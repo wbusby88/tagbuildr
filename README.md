@@ -5,13 +5,14 @@ Tag.js uses a simple declarative syntax, allowing for quick DOM element creation
 
 ##Examples
 
+###Create an h2 element with some text
 ```
-//create an h2 element with some text
-
 var title = Tag('h2.title', 'My shiny new title');
 console.log(title); //<h2 class="title">My shiny new title</div>
+```
 
-//create a more complex element with multiple children elements
+###Create a more complex element with multiple children elements
+```
 var content = /* some ajax result or hardcoded data */
 
 var article = Tag('article.my-article', [
@@ -34,3 +35,26 @@ console.log(article);
 document.body.appendChild(article);
   
 ```
+
+###Handle attributes on an element
+
+Seperate each attribute using the pipe '|' symbol and in this manner: 'attribute-name=attribute-value'
+
+e.g:
+```
+var img = Tag('img.my-image|src=http://mydomain.com/img/logo.png');
+console.log(img);
+//<img class="my-image" src="http://mydomain.com/img/logo.png" />
+
+```
+
+###Note: Classes and Id must be used FIRST
+e.g.
+```
+//not valid
+Tag('div|data-my-attr=value.my-class#my-id');
+
+//valid
+Tag('div.my-class#myid|data-my-attr=value');
+
+
