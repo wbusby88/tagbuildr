@@ -38,13 +38,13 @@ document.body.appendChild(article);
 
 ###Handle attributes on an element
 
-Seperate each attribute using the pipe '|' symbol and in this manner: 'attribute-name=attribute-value'
+Seperate each attribute using the pipe '|' symbol and in this manner: 'attribute-name=attribute-value|other-attr=other-value'
 
 e.g:
 ```javascript
-var img = Tag('img.my-image|src=http://mydomain.com/img/logo.png');
+var img = Tag('img.my-image|src=http://mydomain.com/img/logo.png|alt=my nice image');
 console.log(img);
-//<img class="my-image" src="http://mydomain.com/img/logo.png" />
+//<img class="my-image" src="http://mydomain.com/img/logo.png" alt="my nice image" />
 
 ```
 
