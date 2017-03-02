@@ -1,11 +1,17 @@
 /**
  * Tag.js - Utility to create a DOM element and add chilren elements using a declarative string syntax
- * @author Will Busby - Haymarket Media
+ * @version 1.0
+ * @author Will Busby
  * 
  */
 (function (undefined) {
     'use strict';
-
+    
+    /*
+    *  Check if variable is an element
+    *  @param {mixed} obj any value to test
+    *  @return {boolean}
+    */
     var isElement = void 0;
     if ("HTMLElement" in window) {
         isElement = function isElement(obj) {
@@ -16,20 +22,27 @@
             return !!(obj && typeof obj === "object" && obj.nodeType === 1 && obj.nodeName);
         };
     }
-
+    
+    /*
+    *  Check if variable is an array
+    *  @param {mixed} obj any value to test
+    *  @return {boolean}
+    */
     var isArray = void 0;
-
     if (Array.isArray) {
         isArray = Array.isArray;
     } else {
-        isArray = $.isArray;
+        isArray = function(obj) {
+            return Object.prototype.toString.call(obj) === '[object Array]';
+        };
     }
 
     /**
-        * You can have multiple nested calls to the create function from within the children arrays
-        * @param {String} tagString The element tag string. Use a declarative syntax to define the tag and attributes e.g. h1.title|data-attr=foo, div#main-div etc
-        * @param {Dynamic} children Either a single child element|string|number or A mixed array of strings|numbers|elements to add as children
-        * @return {Element} full rendered DOM element
+    * Main tag factory function
+    * You can have multiple nested calls to the create function from within the children arrays
+    * @param {String} tagString The element tag string. Use a declarative syntax to define the tag and attributes e.g. h1.title|data-attr=foo, div#main-div etc
+    * @param {Dynamic} children Either a single child element|string|number or A mixed array of strings|numbers|elements to add as children
+    * @return {Element} full DOM element
     */
     window.Tag = function tagBuilder(tagString, children) {
         //transform class and id strings to compatible attributes
@@ -53,9 +66,7 @@
             _append(children, el);
             return el;
         } else {
-            /**
-            * Children array can have a mix of strings and javascript DOM elements. It looks for the string and uses the more optimised insertAdjacentHTML or simple appends the child to the element.
-            */
+            //Children array can have a mix of strings and javascript DOM elements.
             _appendChildren(children, el);
         }
         //finished with children
@@ -81,7 +92,7 @@
                 returnArr.push("|" + attrType[clsIdArr[i][0]] + "=" + clsIdArr[i].substr(1));
             }
             clsIdArr = null;
-            return "" + tag + returnArr.join('') + end;
+            return tag + returnArr.join('') + end;
         });
     }
 
