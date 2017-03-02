@@ -17,7 +17,7 @@ var content = /* some ajax result or hardcoded data */
 
 var article = Tag('article.my-article', [
     Tag('h2.article__title', content.title),
-    Tag('div.article__content, content.body'),
+    Tag('div.article__content', content.body),
     Tag('footer.article__footer', [
         'Article written by: ',
         content.author.name
