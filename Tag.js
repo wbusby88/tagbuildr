@@ -40,6 +40,7 @@
     /**
     * Main tag factory function
     * You can have multiple nested calls to the create function from within the children arrays
+    * @global
     * @param {String} tagString The element tag string. Use a declarative syntax to define the tag and attributes e.g. h1.title|data-attr=foo, div#main-div etc
     * @param {Dynamic} children Either a single child element|string|number or A mixed array of strings|numbers|elements to add as children
     * @return {Element} full DOM element
@@ -75,11 +76,19 @@
         return el;
     };
 
+    /********** INTERNAL METHODS *********/
+
     var attrType = {
         '.': 'className',
         '#': 'id'
     };
 
+    /**
+     * Remove the css style classes and ids then replace them with a parseable string to add later on
+     * @private
+     * @param {string} str 
+     * @return {string} reformatted tagString
+     */
     function _handleClassesAndId(str) {
         return str.replace(/(.*?)([\.|#].[^|]*)(.*)/, function (fullStr, tag, classAndIds, end) {
             if (classAndIds[0] === '|') {
@@ -96,6 +105,12 @@
         });
     }
 
+    /**
+     * Parse and process the attribute strings into an object of key-value pairs like: attr-name: attr-value
+     * @private
+     * @param {Array} arr an array of attribute strings e.g src=my-img.jpg
+     * @return {Object} a sorted key value pair object ready to add to the element
+     */
     function _sortAttrs(arr) {
         var attrs = {};
         for (var i = 0, l = arr.length; i < l; i++) {
@@ -115,6 +130,12 @@
         return attrs;
     }
 
+    /**
+     * Add attributes to the dom element
+     * @private
+     * @param {Object} attrs object of key-value pairs of dom attributes. Classes and Id are added directly to element and others are set via setAttribute
+     * @param {Element} el the dom element
+     */
     function _setDomAttrs(attrs, el) {
         var attr = void 0;
         for (attr in attrs) {
@@ -126,6 +147,12 @@
         }
     }
 
+    /**
+     * Convenience function to add multiple children nodes to the element
+     * @private
+     * @param {Array} children a mixed array of strings|elements|html to add to the element
+     * @param {Element} el the dom element
+     */
     function _appendChildren(children, el) {
         var i = 0;
         var len = children.length;
@@ -134,6 +161,12 @@
         }
     }
 
+    /**
+     * Main append child function
+     * @private
+     * @param {mixed} child a string|Element|html - insertAdjacentHTML is used for strings and html strings as it is much faster when appending multiple children. See test case here: https://jsperf.com/innerhtml-vs-insertadjacenthtml-multiple-children
+     * @param {*} el 
+     */
     function _append(child, el) {
         if (isElement(child)) {
             el.appendChild(child);
