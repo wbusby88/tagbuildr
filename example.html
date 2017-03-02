@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testing Tag.js</title>
+</head>
+<body>
+    
+    <script src="Tag.js"></script>
+    <script>
+        var main = Tag('main', [
+            Tag('h1.title', 'New shiny title'),
+            Tag('div.main__content', [
+                Tag('p', 'Tag.js is awesome!')
+            ])
+        ]);
+
+        document.body.appendChild(main);
+
+    </script>
+</body>
+</html>
