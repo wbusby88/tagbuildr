@@ -1,5 +1,5 @@
 /**
- * Tag.js - Utility to create a DOM element and add chilren elements using a declarative string syntax
+ * Tag.js - Utility to create a DOM element and add children elements using a declarative string syntax
  * @version 1.0
  * @author Will Busby
  * 
