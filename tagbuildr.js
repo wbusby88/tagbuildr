@@ -1,11 +1,11 @@
 /**
  * tagbuildr.js - Utility to create DOM elements and add children elements using a declarative string syntax
- * @version 1.0
+ * @version 1.0.2
  * @author Will Busby
  * 
  */
 
-(function (undefined) {
+(function (global) {
     'use strict';
 
 	/**** Utils ****/
@@ -16,7 +16,7 @@
     *  @return {boolean}
     */
     var isElement = void 0;
-    if (this && "HTMLElement" in this) {
+    if (global && "HTMLElement" in global) {
         isElement = function isElement(obj) {
             return obj instanceof HTMLElement;
         };
@@ -185,8 +185,8 @@
 		else if (typeof define == 'function' && define.amd)
 			define(name, definition);
 		else if (window)
-			window[name] = definition;
-			window.tb = definition;
-	}('tagbuildr', this, tagbuildr));
+			context[name] = definition;
+			context.tb = definition;
+	}('tagbuildr', global, tagbuildr));
 
-}());
+}(this));

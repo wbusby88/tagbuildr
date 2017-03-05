@@ -1,6 +1,6 @@
 {
   "name": "tagbuildr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Minimalistic library agnostic utility to create DOM elements and create template components with little effort",
   "main": "tagbuildr.js",
   "scripts": {
