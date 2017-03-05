@@ -145,7 +145,7 @@ document.body.appendChild(article);
 ```
 
 Quick, clean, and easy. 
-Tag.js allows you to have clean, reusable componants, without the need for transpilers or any other build process:
+Tag.js allows you to create reusable components without the need for transpilers, libraries, or any other build process:
 
 ```javascript
 
