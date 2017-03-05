@@ -1,13 +1,14 @@
-# Tag.js
+# tagbuildr.js
 Library agnostic utility to create DOM elements and add children elements with little effort.
 
-Tag.js uses a simple declarative syntax, allowing for quick DOM element creation and template building.
+tagbuildr.js uses a simple declarative syntax, allowing for quick DOM element creation and template building.
 
 ##Usage
 
 ###Create an h2 element with some text
 ```javascript
-var title = Tag('h2.title', 'My shiny new title');
+//tagbuildr adds the alias tb as the main factory function
+var title = tb('h2.title', 'My shiny new title');
 console.log(title); //<h2 class="title">My shiny new title</div>
 ```
 
@@ -15,10 +16,10 @@ console.log(title); //<h2 class="title">My shiny new title</div>
 ```javascript
 var content = /* some ajax result or hardcoded data */
 
-var article = Tag('article.my-article', [
-    Tag('h2.article__title', content.title),
-    Tag('div.article__content', content.body),
-    Tag('footer.article__footer', [
+var article = tb('article.my-article', [
+    tb('h2.article__title', content.title),
+    tb('div.article__content', content.body),
+    tb('footer.article__footer', [
         'Article written by: ',
         content.author.name
     ])
@@ -45,7 +46,7 @@ Seperate each attribute using the pipe '|' symbol and in this manner:
 
 e.g:
 ```javascript
-var img = Tag('img.my-image|src=http://mydomain.com/img/logo.png|alt=my nice image');
+var img = tb('img.my-image|src=http://mydomain.com/img/logo.png|alt=my nice image');
 console.log(img);
 //<img class="my-image" src="http://mydomain.com/img/logo.png" alt="my nice image" />
 
@@ -55,14 +56,14 @@ console.log(img);
 e.g.
 ```javascript
 //not valid
-Tag('div|data-my-attr=value.my-class#my-id');
+tb('div|data-my-attr=value.my-class#my-id');
 
 //valid
-Tag('div.my-class#myid|data-my-attr=value');
+tb('div.my-class#myid|data-my-attr=value');
 
 ```
 
-##Why should I use Tag.js?
+##Why should I use tagbuildr.js?
 There are usually multiple times throughout a project where you need to add some dynamic data that needs to be wrapped in some HTML.
 
 If you're not using any large front end framework like React or Angular, the pure js way would go something like this:
@@ -128,16 +129,16 @@ $('body').append(article);
 
 ```
 
-Now consider the Tag.js way:
+Now consider the tagbuildr.js way:
 
 ```javascript
 
 //Use css selector style declaration for classes and Ids. 
 //Use a simple 'attr=value' syntax for attributes separated by a pipe "|"
-var article = Tag('article.my-article', [
-    Tag('img.article__img|src=' + content.featuredImg),
-    Tag('h2.article__title.title', content.title),
-    Tag('div.article__body', content.body)
+var article = tb('article.my-article', [
+    tb('img.article__img|src=' + content.featuredImg),
+    tb('h2.article__title.title', content.title),
+    tb('div.article__body', content.body)
 ]);
 
 document.body.appendChild(article);
@@ -145,15 +146,15 @@ document.body.appendChild(article);
 ```
 
 Quick, clean, and easy. 
-Tag.js allows you to create reusable components without the need for transpilers, libraries, or any other build process:
+tagbuildr.js allows you to create reusable components without the need for transpilers, libraries, or any other build process:
 
 ```javascript
 
 function article(content) {
-    return Tag('article.my-article', [
-        Tag('img.article__img|src=' + content.featuredImg),
-        Tag('h2.article__title.title', content.title),
-        Tag('div.article__body', content.body)
+    return tb('article.my-article', [
+        tb('img.article__img|src=' + content.featuredImg),
+        tb('h2.article__title.title', content.title),
+        tb('div.article__body', content.body)
     ]);
 }
 
@@ -172,4 +173,4 @@ ajax.get('/articles/page/2')
 
 ##Browser support
 
-Tag.js will work in any browser that supports native ES5 features. For the all lingering IE, this means IE9+.
+tagbuildr.js will work in any browser that supports native ES5 features. For the all lingering IE, this means IE9+.

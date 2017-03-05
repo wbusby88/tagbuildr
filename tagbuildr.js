@@ -1,19 +1,22 @@
 /**
- * Tag.js - Utility to create a DOM element and add children elements using a declarative string syntax
+ * tagbuildr.js - Utility to create DOM elements and add children elements using a declarative string syntax
  * @version 1.0
  * @author Will Busby
  * 
  */
+
 (function (undefined) {
     'use strict';
-    
+
+	/**** Utils ****/
+
     /*
     *  Check if variable is an element
     *  @param {mixed} obj any value to test
     *  @return {boolean}
     */
     var isElement = void 0;
-    if ("HTMLElement" in window) {
+    if (this && "HTMLElement" in this) {
         isElement = function isElement(obj) {
             return obj instanceof HTMLElement;
         };
@@ -38,14 +41,14 @@
     }
 
     /**
-    * Main tag factory function
+    * Main tag building factory function
     * You can have multiple nested calls to the create function from within the children arrays
     * @global
     * @param {String} tagString The element tag string. Use a declarative syntax to define the tag and attributes e.g. h1.title|data-attr=foo, div#main-div etc
-    * @param {Dynamic} children Either a single child element|string|number or A mixed array of strings|numbers|elements to add as children
+    * @param {string|Array} children Either a single child element|string|number or A mixed array of strings|numbers|elements to add as children
     * @return {Element} full DOM element
     */
-    window.Tag = function tagBuilder(tagString, children) {
+    function tagBuildr(tagString, children) {
         //transform class and id strings to compatible attributes
         tagString = _handleClassesAndId(tagString);
         var tagStrArray = tagString.split(/\|/);
@@ -164,8 +167,9 @@
     /**
      * Main append child function
      * @private
-     * @param {mixed} child a string|Element|html - insertAdjacentHTML is used for strings and html strings as it is much faster when appending multiple children. See test case here: https://jsperf.com/innerhtml-vs-insertadjacenthtml-multiple-children
-     * @param {*} el 
+     * @param {string|Element} child a string|Element|html - insertAdjacentHTML is used for strings and html strings as it is much faster when appending multiple children. See test case here: https://jsperf.com/innerhtml-vs-insertadjacenthtml-multiple-children
+	 * @param {Element} el
+	 *
      */
     function _append(child, el) {
         if (isElement(child)) {
@@ -175,4 +179,14 @@
         }
     }
 
-})();
+	(function (name, context, definition) {
+		if (typeof module != 'undefined' && module.exports)
+			module.exports = definition;
+		else if (typeof define == 'function' && define.amd)
+			define(name, definition);
+		else
+			context[name] = definition;
+			context['tb'] = definition;
+	}('tagBuildr', this, tagBuildr));
+
+}());
