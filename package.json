@@ -1,5 +1,5 @@
 {
-  "name": "tagbuildr.js",
+  "name": "tagbuildr",
   "version": "1.0.0",
   "description": "Minimalistic library agnostic utility to create DOM elements and create template components with little effort",
   "main": "tagbuildr.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/buzzin0609/tag-js.git"
+    "url": "git+https://github.com/buzzin0609/tagbuildr.js.git"
   },
   "keywords": [
     "dom",
@@ -21,7 +21,7 @@
   "author": "Will Busby <will0609@hotmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/buzzin0609/tag-js/issues"
+    "url": "https://github.com/buzzin0609/tagbuildr.js/issues"
   },
-  "homepage": "https://github.com/buzzin0609/tag-js#readme"
+  "homepage": "https://github.com/buzzin0609/tagbuildr#readme"
 }

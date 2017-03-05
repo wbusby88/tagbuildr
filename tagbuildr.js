@@ -48,7 +48,7 @@
     * @param {string|Array} children Either a single child element|string|number or A mixed array of strings|numbers|elements to add as children
     * @return {Element} full DOM element
     */
-    function tagBuildr(tagString, children) {
+    function tagbuildr(tagString, children) {
         //transform class and id strings to compatible attributes
         tagString = _handleClassesAndId(tagString);
         var tagStrArray = tagString.split(/\|/);
@@ -184,9 +184,9 @@
 			module.exports = definition;
 		else if (typeof define == 'function' && define.amd)
 			define(name, definition);
-		else
-			context[name] = definition;
-			context['tb'] = definition;
-	}('tagBuildr', this, tagBuildr));
+		else if (window)
+			window[name] = definition;
+			window.tb = definition;
+	}('tagbuildr', this, tagbuildr));
 
 }());
