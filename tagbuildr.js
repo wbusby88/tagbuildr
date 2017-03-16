@@ -142,10 +142,15 @@
     function _setDomAttrs(attrs, el) {
         var attr = void 0;
         for (attr in attrs) {
-            if (attr === 'className' || attr === 'id') {
-                el[attr] = attrs[attr];
-            } else if (attrs.hasOwnProperty(attr)) {
-                el.setAttribute(attr, attrs[attr]);
+            if (!attrs.hasOwnProperty(attr)) { return; }
+            switch (attr) {
+                case 'className':
+                case 'id':
+                    el[attr] = attrs[attr];
+                    break;
+                default:
+                    el.setAttribute(attr, attrs[attr]);
+                    break;
             }
         }
     }
