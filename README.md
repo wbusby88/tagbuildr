@@ -3,16 +3,16 @@ Library agnostic utility to create DOM elements and add children elements with l
 
 tagbuildr.js uses a simple declarative syntax, allowing for quick DOM element creation and template building.
 
-##Usage
+## Usage
 
-###Create an h2 element with some text
+### Create an h2 element with some text
 ```javascript
 //tagbuildr adds the alias tb as the main factory function
 var title = tb('h2.title', 'My shiny new title');
 console.log(title); //<h2 class="title">My shiny new title</div>
 ```
 
-###Create a more complex element with multiple children elements
+### Create a more complex element with multiple children elements
 ```javascript
 var content = /* some ajax result or hardcoded data */
 
@@ -37,7 +37,7 @@ document.body.appendChild(article);
   
 ```
 
-###Handle attributes on an element
+### Handle attributes on an element
 
 Seperate each attribute using the pipe '|' symbol and in this manner: 
 ```javascript 
@@ -52,7 +52,7 @@ console.log(img);
 
 ```
 
-###Note: Classes and Id must be used FIRST
+### Note: Classes and Id must be used FIRST
 e.g.
 ```javascript
 //not valid
@@ -63,7 +63,7 @@ tb('div.my-class#myid|data-my-attr=value');
 
 ```
 
-##Why should I use tagbuildr.js?
+## Why should I use tagbuildr.js?
 There are usually multiple times throughout a project where you need to add some dynamic data that needs to be wrapped in some HTML.
 
 If you're not using any large front end framework like React or Angular, the pure js way would go something like this:
@@ -171,6 +171,6 @@ ajax.get('/articles/page/2')
 
 ```
 
-##Browser support
+## Browser support
 
 tagbuildr.js will work in any browser that supports native ES5 features. For the all lingering IE, this means IE9+.
