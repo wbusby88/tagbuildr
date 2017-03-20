@@ -1,6 +1,6 @@
 /**
  * tagbuildr.js - Utility to create DOM elements and add children elements using a declarative string syntax
- * @version 1.0.2
+ * @version 1.0.4
  * @author Will Busby
  * 
  */
@@ -142,7 +142,7 @@
     function _setDomAttrs(attrs, el) {
         var attr = void 0;
         for (attr in attrs) {
-            if (!attrs.hasOwnProperty(attr)) { return; }
+            if (!attrs.hasOwnProperty(attr)) { continue; }
             switch (attr) {
                 case 'className':
                 case 'id':
