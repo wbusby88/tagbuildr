@@ -1,6 +1,6 @@
 {
   "name": "tagbuildr",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "Minimalistic library agnostic utility to create DOM elements and create template components with little effort",
   "main": "tagbuildr.js",
   "scripts": {
@@ -23,5 +23,15 @@
   "bugs": {
     "url": "https://github.com/buzzin0609/tagbuildr.js/issues"
   },
-  "homepage": "https://github.com/buzzin0609/tagbuildr#readme"
+  "homepage": "https://github.com/buzzin0609/tagbuildr#readme",
+  "devDependencies": {
+    "expect": "^22.4.3",
+    "karma": "^2.0.2",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-mocha": "^1.3.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^3.0.0",
+    "mocha": "^5.1.1",
+    "webpack": "^4.8.2"
+  }
 }
