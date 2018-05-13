@@ -28,6 +28,14 @@ describe('tagbuildr:', function () {
 		expect(el.id).toEqual('test');
 	});
 
+	it('should add multiple classes and an id to the element', function () {
+		const el = tb('div.foo#bar.fizz');
+
+		expect(el.className).toContain('fizz');
+		expect(el.className).toContain('foo');
+		expect(el.id).toEqual('bar');
+	});
+
 	it('should add an attribute to the element', function () {
 		const el = tb('div|data-test=foo');
 
