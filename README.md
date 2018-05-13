@@ -1,22 +1,37 @@
 # tagbuildr.js
+
 Library agnostic utility to create DOM elements and add children elements with little effort.
 
 tagbuildr.js uses a simple declarative syntax, allowing for quick DOM element creation and template building.
 
+## Version: 2.0
+Note: version 2.0 now uses ES modules and must be compiled as part of a build process (e.g Webpack, Rollup etc).
+
+## Installation
+With npm
+`npm install --save-dev tagbuildr`
+
+With yarn
+`yarn add tagbuildr` 
+
 ## Usage
+
+### Import as ES Module
+
+`import tb from 'tagbuildr'`
 
 ### Create an h2 element with some text
 ```javascript
 //tagbuildr adds the alias tb as the main factory function
-var title = tb('h2.title', 'My shiny new title');
+const title = tb('h2.title', 'My shiny new title');
 console.log(title); //<h2 class="title">My shiny new title</div>
 ```
 
 ### Create a more complex element with multiple children elements
 ```javascript
-var content = /* some ajax result or hardcoded data */
+const content = 'My Content';
 
-var article = tb('article.my-article', [
+const article = tb('article.my-article', [
     tb('h2.article__title', content.title),
     tb('div.article__content', content.body),
     tb('footer.article__footer', [
@@ -46,7 +61,7 @@ Seperate each attribute using the pipe '|' symbol and in this manner:
 
 e.g:
 ```javascript
-var img = tb('img.my-image|src=http://mydomain.com/img/logo.png|alt=my nice image');
+const img = tb('img.my-image|src=http://mydomain.com/img/logo.png|alt=my nice image');
 console.log(img);
 //<img class="my-image" src="http://mydomain.com/img/logo.png" alt="my nice image" />
 
@@ -69,24 +84,24 @@ There are usually multiple times throughout a project where you need to add some
 If you're not using any large front end framework like React or Angular, the pure js way would go something like this:
 
 ```javascript
-var content = /* some data */;
+const content = 'My dynamic content';
 
 //create article wrapper
-var wrapper = document.createElement('article');
+const wrapper = document.createElement('article');
 wrapper.className = 'my-article';
 
 //create img
-var img = document.createElement('img');
+const img = document.createElement('img');
 img.className = 'article__img';
 img.src = content.featuredImg;
 
 //create title
-var title = document.createElement('h2');
+const title = document.createElement('h2');
 title.className = 'article__title title';
 title.innerHTML = content.title;
 
 //create content container
-var contentBody = document.createElement('div');
+const contentBody = document.createElement('div');
 contentBody.className = 'article__content';
 contentBody.innerHTML = content.body;
 
@@ -105,7 +120,7 @@ Alternatively you can straight up write the HTML as a string:
 
 ```javascript
 
-var html = '<article class="my-article">' +
+const html = '<article class="my-article">' +
                 '<img class="article__img" src="' + content.featuredImg + '" />' +
                 '<h2 class="article__title title">' + content.title + '</h2>' +
                 '<div class="article__content">' + content.body + '</div>' +
@@ -120,7 +135,7 @@ Even if you're using a library like jQuery, you're still going to have to write 
 
 ```javascript
 
-var article = $('<article class="my-article"></article>')
+const article = $('<article class="my-article"></article>')
                 .append('<img class="article_img" src="'+ content.featuredImg +'" />')
                 .append('<h2 class="article__title title">' + content.title + '</h2>')
                 .append('<div class="article__content">' + content.body + '</div>');
@@ -135,7 +150,7 @@ Now consider the tagbuildr.js way:
 
 //Use css selector style declaration for classes and Ids. 
 //Use a simple 'attr=value' syntax for attributes separated by a pipe "|"
-var article = tb('article.my-article', [
+const article = tb('article.my-article', [
     tb('img.article__img|src=' + content.featuredImg),
     tb('h2.article__title.title', content.title),
     tb('div.article__body', content.body)
@@ -161,7 +176,7 @@ function article(content) {
 //make an ajax call to get more articles
 ajax.get('/articles/page/2')
     .then(function(articleDataArray) {
-        var targetElement = document.getElementById('my-element');
+        const targetElement = document.getElementById('my-element');
         //append the articles to a targetelement using the article Component function above
         articleDataArray.forEach(function(articleData) {
             targetElement.appendChild(article(articleData));
